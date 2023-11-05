@@ -1,6 +1,7 @@
 package com.devsuperior.movieflix.dto;
 
 import com.devsuperior.movieflix.entities.Review;
+import com.devsuperior.movieflix.repositories.projections.MovieReviewProjection;
 
 public class ReviewDTO {
 
@@ -15,11 +16,25 @@ public class ReviewDTO {
     public ReviewDTO() {
     }
 
+    public ReviewDTO(Long id, String text, Long movieId, Long userId, String userName, String userEmail) {
+        this.id = id;
+        this.text = text;
+        this.movieId = movieId;
+        this.user = new UserDTO(userId, userName, userEmail);
+    }
+
     public ReviewDTO(Review review) {
         this.id = review.getId();
         this.text = review.getText();
         this.movieId = review.getMovie().getId();
         this.user = new UserDTO(review.getUser());
+    }
+
+    public ReviewDTO(MovieReviewProjection projection) {
+        this.id = projection.getREVIEW_ID();
+        this.text = projection.getTEXT();
+        this.movieId = projection.getMOVIE_ID();
+        this.user = new UserDTO(projection.getUSER_ID(), projection.getUSER_NAME(), projection.getUSER_EMAIL());
     }
 
     public Long getId() {
