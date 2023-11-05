@@ -29,14 +29,14 @@ public class MovieService {
     @Autowired
     private GenreRepository genreRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public MovieDTO findById(Long id) {
         Optional<Movie> optionalMovie = repository.findById(id);
         Movie movie = optionalMovie.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         return new MovieDTO(movie);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ReviewDTO> findByIdForGetReview(Long id) {
         /*
             Solução SQL Raiz
@@ -50,7 +50,7 @@ public class MovieService {
     }
 
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<MovieDTO> findByGenreIdForGenPage(Long genreId, Pageable pageable) {
         Genre genre = (genreId == 0) ? null : genreRepository.getOne(genreId);
         Page<Movie> movies = repository.findMovieByGenre(genre, pageable);
