@@ -36,6 +36,15 @@ public class MovieDTO implements Serializable {
         this.genre = new GenreDTO(movie.getGenre());
     }
 
+    public MovieDTO(String title, String subTitle, Integer year, String imgUrl, String synopsis, GenreDTO genre) {
+        this.title = title;
+        this.subTitle = subTitle;
+        this.year = year;
+        this.imgUrl = imgUrl;
+        this.synopsis = synopsis;
+        this.genre = genre;
+    }
+
     public String getTitle() {
         return title;
     }
