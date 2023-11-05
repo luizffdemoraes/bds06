@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -18,7 +19,7 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/reviews")
-    public ResponseEntity<ReviewDTO> insertReview(@RequestBody ReviewDTO reviewDTO) {
+    public ResponseEntity<ReviewDTO> insertReview(@Valid @RequestBody ReviewDTO reviewDTO) {
         ReviewDTO review = reviewService.insertReview(reviewDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/movies/{id}/reviews").buildAndExpand(review.getId()).toUri();
         return ResponseEntity.created(uri).body(review);

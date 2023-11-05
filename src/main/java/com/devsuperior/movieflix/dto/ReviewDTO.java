@@ -3,10 +3,13 @@ package com.devsuperior.movieflix.dto;
 import com.devsuperior.movieflix.entities.Review;
 import com.devsuperior.movieflix.repositories.projections.MovieReviewProjection;
 
+import javax.validation.constraints.NotBlank;
+
 public class ReviewDTO {
 
     private Long id;
 
+    @NotBlank
     private String text;
 
     private Long movieId;
