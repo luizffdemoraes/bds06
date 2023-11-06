@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class MovieDTO implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    private Long id;
     private String title;
     private String subTitle;
     private Integer year;
@@ -18,16 +18,8 @@ public class MovieDTO implements Serializable {
     public MovieDTO() {
     }
 
-    public MovieDTO(String title, String subTitle, Integer year, String imgUrl, String synopsis, Genre genre) {
-        this.title = title;
-        this.subTitle = subTitle;
-        this.year = year;
-        this.imgUrl = imgUrl;
-        this.synopsis = synopsis;
-        this.genre = new GenreDTO(genre);
-    }
-
     public MovieDTO(Movie movie) {
+        this.id = movie.getId();
         this.title = movie.getTitle();
         this.subTitle = movie.getSubTitle();
         this.year = movie.getYear();
@@ -36,13 +28,12 @@ public class MovieDTO implements Serializable {
         this.genre = new GenreDTO(movie.getGenre());
     }
 
-    public MovieDTO(String title, String subTitle, Integer year, String imgUrl, String synopsis, GenreDTO genre) {
-        this.title = title;
-        this.subTitle = subTitle;
-        this.year = year;
-        this.imgUrl = imgUrl;
-        this.synopsis = synopsis;
-        this.genre = genre;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
